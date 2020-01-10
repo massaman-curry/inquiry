@@ -8,7 +8,7 @@
 <body>
 <div class= "container">
     <h1>お問い合わせ</h1>
-    <form action="cofirm.php" mehod="post">
+    <form action="view/confirm.php" method="POST">
 
     <p>名前(必須):</p>
     <input type="text" name="name">
