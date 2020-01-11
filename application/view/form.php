@@ -1,6 +1,6 @@
 
     <h1>お問い合わせ</h1>
-    <form action="view/confirm.php" method="POST">
+    <form action="/index.php/confirm" method="POST">
 
     <p>名前(必須):</p>
     <input type="text" name="name">

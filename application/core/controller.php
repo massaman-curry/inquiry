@@ -3,10 +3,18 @@
 class Controller{
 
     protected $view;
+    protected $model;
+    protected $method;
 
     public function __construct(){
         require 'view.php';
+        require 'model.php';
         $this->view = new View();
+        $this->model = new Model();
+    }
+
+    public function getRequest(){
+        return $this->model->getRequest();
     }
 
 
@@ -14,7 +22,9 @@ class Controller{
         $this->view->render('index');
     }
 
-    public function confirm(){
+    public function confirm($params){
+        $this->view->render('confirm', $params);
+
         // 入力されたデータを受取。
         // 受け取ったデータのチェック。
         // viewファイルにデータを渡してレンダー

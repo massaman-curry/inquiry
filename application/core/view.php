@@ -3,10 +3,10 @@
 class View{
 
     protected $index = 'view/form.php';
-    protected $confirm = '../view/confirm.php';
-    protected $accepted = '../view/accepted.php';
+    protected $confirm = 'view/confirm.php';
+    protected $accepted = 'view/accepted.php';
 
-    public function render($mode){?>
+    public function render($mode, $data = []){?>
 
         <!DOCTYPE html>
         <html lang=ja>
