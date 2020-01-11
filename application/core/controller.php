@@ -32,11 +32,12 @@ class Controller{
         }
     }
 
-    public function mail(){
+    public function sendmail($data){
+        $this->view->render('sendmail', $params);
         
-        // 確認画面からデータを受取。
+        // 確認画面からデータを受取。お問い合わせありがとう画面（sendmail.php）
         // 受取データのメールアドレスに対してデータを送信。
-
+        // データには受取データを格納。
     }
 
 }

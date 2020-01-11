@@ -1,5 +1,5 @@
 
-<form action= "accepted.php" method= "post">
+<form action= "/index.php/sendmail" method= "post">
     <input type= 'hidden' name= 'name' value= <?= $_POST['name']; ?>>
     <input type= 'hidden' name= 'email' value= <?= $_POST['email']; ?>>
     <input type= 'hidden' name= 'tel' value= <?= $_POST['tel']; ?>>

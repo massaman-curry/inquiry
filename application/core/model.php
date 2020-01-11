@@ -45,4 +45,16 @@ class Model{
 
     }
 
+    public function send_a_mail($data){
+        mb_language("Japanese");
+        mb_internal_encoding("UTF-8");
+
+        $to = $data['email'];
+        $subj = '自動返信メール';
+        $msg = require '/view/mailcontent.php';
+        $header = 'Bcc: ';
+        //CentOS側のsendmailの設定を先に。
+    }
+
+
 }

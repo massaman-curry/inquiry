@@ -1,6 +1,6 @@
 
-    <h1>お問い合わせ</h1>
-    <form action="/index.php/confirm" method="POST">
+<h1>お問い合わせ</h1>
+<form action="/index.php/confirm" method="POST">
 
     <p>名前(必須):</p>
     <input type="text" name="name">
@@ -11,6 +11,6 @@
     <p>お問い合わせ内容:</p>
     <textarea name="content"></textarea>
     
-    <input type="submit" value="確認">
+<input type="submit" value="確認">
 
 
