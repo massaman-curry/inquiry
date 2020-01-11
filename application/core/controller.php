@@ -23,15 +23,17 @@ class Controller{
     }
 
     public function confirm($params){
-        $this->view->render('confirm', $params);
-
-        // 入力されたデータを受取。
-        // 受け取ったデータのチェック。
-        // viewファイルにデータを渡してレンダー
-        
+        $eval = $this->model->check_all($params);
+        if($eval === true){ 
+            $this->view->render('confirm', $params);
+        }else{
+            var_dump($eval);
+            //時間があれば、エラーメッセージファイルに$evalを渡してrenderさせる
+        }
     }
 
     public function mail(){
+        
         // 確認画面からデータを受取。
         // 受取データのメールアドレスに対してデータを送信。
 
