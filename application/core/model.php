@@ -27,19 +27,22 @@ class Model{
 
     public function check_all($posted = null){
         $rslts = [];
-        $msg = '';
+        $msg = [];
+        $etoj = ['name' => '名前', 'email' => 'メールアドレス', 'tel' => '電話番号'];
 
         $rslts['name'] = $this->check_name($posted['name']);
         $rslts['email'] = $this->check_email($posted['email']);
         $rslts['tel'] = $this->check_tel($posted['tel']);
 
-        if(!array_search('false', $rslt)) return true;
-
         foreach($rslts as $k => $v){
-            if(!$v) $msg .= $k;
+            if($v == true) continue;
+            $msg[] = $etoj[$k] .'の入力が正しくありません';
         }
-        $msg .= 'の入力が正しくありません。';
-        return $msg;
+
+        if($msg) return $msg;
+        
+        return true;
+
     }
 
 }
