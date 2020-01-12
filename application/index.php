@@ -9,10 +9,11 @@ switch($method){
     case 'confirm':
         $controller->confirm($_POST);
         break;
-    case 'sendmail':
-        $controller->sendmail($_POST);
+    case 'completed':
+        $controller->completed($_POST);
         break;
     default:
-        $controller->index();
-        break;
+        phpinfo();
+        // $controller->index();
+        // break;
 }

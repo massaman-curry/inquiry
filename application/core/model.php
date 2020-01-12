@@ -45,15 +45,17 @@ class Model{
 
     }
 
-    public function send_a_mail($data){
-        mb_language("Japanese");
-        mb_internal_encoding("UTF-8");
-
+    public function mailsending($data, $file_path){
+        // mb_language("Japanese");
+        // mb_internal_encoding("UTF-8");
         $to = $data['email'];
         $subj = '自動返信メール';
-        $msg = require '/view/mailcontent.php';
-        $header = 'Bcc: ';
-        //CentOS側のsendmailの設定を先に。
+        $msg = file_get_contents($file_path);
+        // $header = "\n";
+        // $header .= "\n";
+        $header = 'Bcc: helloworld.test.address@gmail.com';
+
+        return mb_send_mail($to, $subj, $msg, $header);
     }
 
 

@@ -4,7 +4,7 @@ class View{
 
     protected $index = 'view/form.php';
     protected $confirm = 'view/confirm.php';
-    protected $sendmail = 'view/sendmail.php';
+    protected $completed = 'view/completed.php';
 
     public function render($mode, $data = []){?>
 
