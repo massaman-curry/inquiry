@@ -1,0 +1,54 @@
+○フロー
+
+入力画面→確認画面→完了画面
+
+※完了時、管理者（自分）と問い合わせ者に自動返信メールが届く
+
+○入力項目
+
+・名前（必須）
+
+・メールアドレス（必須＋形式チェック）
+
+・電話番号（任意、入力時形式チェック）
+
+・お問合せ内容
+
+繰り返してるheadとかheaderとかを別ファイル(ex. header.php)に読み込んで
+index.phpに表示。
+header.phpのファイルの中にconfirm.phpやform.phpを読み込み。
+
+つまりindex.php -> require header.php -> require confirm.php/form.php
+
+という感じに
+
+helloworld.test.address
+1988/5/10
+
+    <form action="/index.php/confirm" method="POST">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="formname">名前（必須）:</label>
+            <input class="form-control" type="text" id="formname"　value="<?= $data['name']?>" name="name">
+        </div>
+        <div class="form-group">
+            <label for="formemail">メールアドレス（必須）:</label>
+            <input class="form-control" type="email" id="formemail" value="<?= $data['email']?>" name="email">
+        </div>
+        <div class="form-group">
+            <label for="formtel">電話番号（任意）:</label>
+            <input class="form-control" type="tel" id="formtel" value="<?= $data['tel']?>" name="tel">
+        </div>
+        <div class="form-group">
+            <label for="formcontent">お問い合わせ内容:</label>
+            <textarea class="form-control" type="content" id="formcontent" value="<?= $data['content']?>"> </textarea>
+        </div>
+    </div>
+        <input class="btn btn-primary" type="submit" value="確認">
+    </form>
+
+
+            <?php if($error){ ?>
+            <div class="alert alert-danger" role="alert">
+                <?php foreach($error as $e) echo $e . "\n";} ?>
+            </div>
