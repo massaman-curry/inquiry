@@ -39,7 +39,7 @@ class Model{
 
         foreach($rslts as $k => $v){
             if($v == true) continue;
-            $msg[] = $etoj[$k] .'の入力が正しくありません';
+            $msg[] = $etoj[$k] .'の入力が正しくありません。';
         }
 
         if($msg) return $msg;

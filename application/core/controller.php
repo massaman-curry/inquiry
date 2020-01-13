@@ -4,7 +4,6 @@ class Controller{
 
     protected $view;
     protected $model;
-    protected $method;
 
     public function __construct(){
         require 'view.php';
@@ -27,8 +26,7 @@ class Controller{
         if($eval === true){ 
             $this->view->render('confirm', $params);
         }else{
-            var_dump($eval);
-            //時間があれば、エラーメッセージファイルに$evalを渡してrenderさせる
+            $this->view->render('index', $params, $eval);
         }
     }
 

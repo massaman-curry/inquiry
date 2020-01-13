@@ -6,7 +6,7 @@ class View{
     protected $confirm = 'view/confirm.php';
     protected $completed = 'view/completed.php';
 
-    public function render($mode, $data = []){?>
+    public function render($mode, $data = [], $error = null){?>
 
         <!DOCTYPE html>
         <html lang=ja>
@@ -16,10 +16,12 @@ class View{
             <title>入力フォーム</title>
         </head>
         <body>
+        <?php if($error){ ?>
+        <div class="alert alert-danger" role="alert">
+            <?php foreach($error as $e) echo $e . "\n";} ?>
+        </div>
         <div class= "container">
-
             <?php require $this->$mode; ?>
-        
         </div>
         </body>
 
