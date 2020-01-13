@@ -10,7 +10,7 @@
         <div class="form-row">
         <div class="form-group col-md-6">
             <label for="formname">名前（必須）:</label>
-            <input class="form-control" type="text" id="formname"　value="<?= $data['name']?>" name="name">
+            <input class="form-control" type="text" id="formname" value="<?= $data['name']?>" name="name">
         </div>
         <div class="form-group col-md-6">
             <label for="formtel">電話番号（任意）:</label>
@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">
             <label for="formcontent">お問い合わせ内容：</label>
-            <textarea class="form-control" type="content" id="formcontent" rows="8" value="<?= $data['content']?>"> </textarea>
+            <textarea class="form-control" name="content" id="formcontent" rows="8"><?= $data['content']?> </textarea>
         </div>
         <input class="btn btn-primary" type="submit" value="確認する">
     </form>
