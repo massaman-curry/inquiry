@@ -13,7 +13,6 @@ switch($method){
         $controller->completed($_POST);
         break;
     default:
-        phpinfo();
-        // $controller->index();
-        // break;
+        $controller->index();
+        break;
 }

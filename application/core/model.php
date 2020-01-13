@@ -45,17 +45,52 @@ class Model{
 
     }
 
-    public function mailsending($data, $file_path){
-        // mb_language("Japanese");
-        // mb_internal_encoding("UTF-8");
+    public function render_mail($data){
+        $content = <<<EOF
+        <html>
+        <head>
+        <meta http-equiv="Content-Type" content="text/html">
+        <meta lang="ja">
+        <meta charset="ISO-2022-JP">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        </head>
+        <body>
+        <h1>お問い合わせ記録</h1>
+        <p>名前：</p>
+            {$data["name"]}
+        <p>メールアドレス：</p>
+            {$data["email"]}
+        <p>電話番号：</p>
+            {$data["tel"]}
+        <p>お問い合わせ内容：</p>
+            {$data["content"]}
+        </body>
+    EOF;
+
+        return $content;
+    }
+
+    public function mailsending($data){
+        mb_language("Japanese");
+        mb_internal_encoding("UTF-8");
         $to = $data['email'];
         $subj = '自動返信メール';
-        $msg = file_get_contents($file_path);
+        // render mail function execute
+        $body = $this->render_mail($data);
+        // $msg = file_get_contents($file_path);
         // $header = "\n";
         // $header .= "\n";
-        $header = 'Bcc: helloworld.test.address@gmail.com';
+        $headers = '';
+        $headers .= 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-Type: text/html; charset=iso-2022-jp' . "\r\n";
+        $headers .= 'Content-Transfer-Encoding: quoted-printable' . "\r\n";
+        $headers .= 'Bcc: helloworld.test.address@gmail.com' . "\r\n";
 
-        return mb_send_mail($to, $subj, $msg, $header);
+        $subj = mb_convert_encoding($subj, "iso-2022-jp");
+        $msg = '';
+        $msg .= quoted_printable_encode(mb_convert_encoding($body, 'iso-2022-jp', 'UTF-8')) . "\r\n";
+        
+        return mb_send_mail($to, $subj, $msg, $headers);
     }
 
 
