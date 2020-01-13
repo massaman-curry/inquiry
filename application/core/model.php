@@ -7,7 +7,7 @@ class Model{
     }
 
     public function check_name($posted = null){
-        if(isset($posted)) return true;
+        if($posted) return true;
     }
 
     public function check_email($posted = null){
@@ -19,10 +19,13 @@ class Model{
     }
 
     public function check_tel($posted = null){
-        $format = preg_match(
-            '/^[0-9]{2,4}-[0-9]{2,4}-[0-9]{3,4}$/'
-            ,$posted);
-        if($format) return true;
+        if($posted){
+            return
+            preg_match(
+                '/^[0-9]{2,4}-[0-9]{2,4}-[0-9]{3,4}$/'
+                ,$posted);
+        }
+        return true;
     }
 
     public function check_all($posted = null){
@@ -45,7 +48,7 @@ class Model{
 
     }
 
-    public function render_mail($data){
+    public function render_notice_mail($data){
         $content = <<<EOF
         <html>
         <head>
@@ -55,31 +58,27 @@ class Model{
         <meta name="viewport" content="width=device-width,initial-scale=1">
         </head>
         <body>
-        <h1>お問い合わせ記録</h1>
-        <p>名前：</p>
-            {$data["name"]}
-        <p>メールアドレス：</p>
-            {$data["email"]}
-        <p>電話番号：</p>
-            {$data["tel"]}
-        <p>お問い合わせ内容：</p>
-            {$data["content"]}
+        <h1 style="font-size: 20px;">お問い合わせ頂いた内容</h1><br>
+        <p style="font-size: 15px;">名前：</p>
+            <p style="font-size: 13px;">{$data["name"]}</p>
+        <p style="font-size: 15px;">メールアドレス：</p>
+            <p style="font-size: 13px;">{$data["email"]}</p>
+        <p style="font-size: 15px;">電話番号：</p>
+            <p style="font-size: 13px;">{$data["tel"]}</p>
+        <p style="font-size: 15px;">お問い合わせ内容：</p>
+            <p style="font-size: 13px;">{$data["content"]}</p>
         </body>
     EOF;
 
         return $content;
     }
 
-    public function mailsending($data){
+    public function mailsending($data, $title = null){
         mb_language("Japanese");
         mb_internal_encoding("UTF-8");
         $to = $data['email'];
-        $subj = '自動返信メール';
-        // render mail function execute
-        $body = $this->render_mail($data);
-        // $msg = file_get_contents($file_path);
-        // $header = "\n";
-        // $header .= "\n";
+        $subj = '[自動返信メール]' . $title;
+        $body = $this->render_notice_mail($data);
         $headers = '';
         $headers .= 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-Type: text/html; charset=iso-2022-jp' . "\r\n";
@@ -89,7 +88,7 @@ class Model{
         $subj = mb_convert_encoding($subj, "iso-2022-jp");
         $msg = '';
         $msg .= quoted_printable_encode(mb_convert_encoding($body, 'iso-2022-jp', 'UTF-8')) . "\r\n";
-        
+
         return mb_send_mail($to, $subj, $msg, $headers);
     }
 

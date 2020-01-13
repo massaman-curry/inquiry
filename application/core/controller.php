@@ -33,14 +33,9 @@ class Controller{
     }
 
     public function completed($params){
-        $this->view->render('completed',$params);
-        return(
-            $this->model->mailsending($params, 'mailtxt/notify.php')
-        );
-        
-        // 確認画面からデータを受取。お問い合わせありがとう画面（sendmail.php）
-        // 受取データのメールアドレスに対してデータを送信。
-        // データには受取データを格納。
+        $title = 'お問い合わせありがとうございました。';
+        if($this->model->mailsending($params, $title)) $this->view->render('completed',$params); return;
+        echo '申し訳ありません。エラーが発生したのでもう一度やり直してください。';
     }
 
 }
