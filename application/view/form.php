@@ -1,9 +1,9 @@
 <div class="row">
-<div class="col-md-2">
+<div class="col-md-1">
 </div>
-<div class="col-md-8">
+<div class="col-md-10">
 <div class="card">
-  <h5 class="card-header">お問い合わせフォーム</h5>
+  <h1 style="font-size:20px;"class="card-header">お問い合わせフォーム</h1>
   <div class="card-body">
     <p class="card-text">必須事項を記入の上、確認するボタンを押してください。</p>
     <form action="/index.php/confirm" method="POST">

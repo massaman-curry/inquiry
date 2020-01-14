@@ -33,7 +33,7 @@ class Controller{
     public function completed($params){
         $title = 'お問い合わせありがとうございました。';
         if($this->model->mailsending($params, $title)) $this->view->render('completed',$params); return;
-        echo '申し訳ありません。エラーが発生したのでもう一度やり直してください。';
+        $this->view->render('completed', '', '申し訳ありません。エラーが発生したのでもう一度やり直してください。');
     }
 
 }
